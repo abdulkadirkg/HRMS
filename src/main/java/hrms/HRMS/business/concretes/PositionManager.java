@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import hrms.HRMS.business.abstracts.PositionService;
 import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
+import hrms.HRMS.core.utilities.results.concretes.ErrorResult;
+import hrms.HRMS.core.utilities.results.concretes.SuccessDataResult;
+import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
 import hrms.HRMS.dataAccess.abstracts.PositionDao;
 import hrms.HRMS.entites.concretes.Position;
 @Service
@@ -23,35 +26,52 @@ public class PositionManager implements PositionService {
 	@Override
 	public IResult add(Position position) {
 		positionDao.save(position);
-		//return new SuccessResult("İşlem Başarılı");
-		return null;
+		return new SuccessResult("Abdulkadir KG");
 	}
 
 	@Override
 	public IResult update(Position position) {
-		//positionDao.(position);
-		return null;
+		//positionDao.update(position);
+		return new ErrorResult("Güncelleme İşlemi Henüz Geliştirilmedi");
 	}
 
 	@Override
 	public IResult delete(Position position) {
 		positionDao.delete(position);
-		return null;
+		return new SuccessResult("Silme İşlemi Başarılı");
+		
 	}
 
 	@Override
 	public IDataResult<Position> get(int Id) {
-		//return new SuccessDataResult<Position>(positionDao.findById(Id));
-		return null;
+		return new SuccessDataResult<Position>(positionDao.getById(Id));
 	}
 
 	@Override
 	public IDataResult<List<Position>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<List<Position>>(positionDao.findAll());
 	}
-	public List<Position> GetAllList(){
-		return positionDao.findAll();
+
+	@Override
+	public IDataResult<Position> getByJobName(String jobName) {
+		return new SuccessDataResult<Position>(positionDao.getByJobName(jobName));
+	}
+
+	@Override
+	public IDataResult<List<Position>> getByJobNameContains(String jobName) {
+		return new SuccessDataResult<List<Position>>(positionDao.getByJobNameContains(jobName));
+	}
+
+	@Override
+	public IDataResult<List<Position>> getByJobNameStartsWith(String jobName) {
+		return new SuccessDataResult<List<Position>>(positionDao.getByJobNameStartsWith(jobName));
+
+	}
+
+	@Override
+	public IDataResult<List<Position>> getByName(String jobName) {
+		return new SuccessDataResult<List<Position>>(positionDao.getByName(jobName));
+
 	}
 	
 }

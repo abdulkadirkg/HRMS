@@ -8,9 +8,20 @@ import hrms.HRMS.entites.concretes.Position;
 
 public interface PositionService {
 	IResult add(Position position);
+
 	IResult update(Position position);
+
 	IResult delete(Position position);
+
 	IDataResult<Position> get(int Id);
+
 	IDataResult<List<Position>> getAll();
-	List<Position> GetAllList();
+
+	IDataResult<Position> getByJobName(String jobName);
+
+	IDataResult<List<Position>> getByJobNameContains(String jobName);
+
+	IDataResult<List<Position>> getByJobNameStartsWith(String jobName);
+
+	IDataResult<List<Position>> getByName(String jobName);
 }
