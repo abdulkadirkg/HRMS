@@ -20,7 +20,10 @@ public class Position {
 		this.updatedAt = updatedAt;
 		this.deletedAt = deletedAt;
 	}
-	public Position() {}
+
+	public Position() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -33,33 +36,43 @@ public class Position {
 	Date updatedAt = new Date();
 	@Column(name = "deleted_at")
 	Date deletedAt = new Date();
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getJobName() {
 		return jobName;
 	}
+
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
 	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
 	public Date getDeletedAt() {
 		return deletedAt;
 	}
+
 	public void setDeletedAt(Date deletedAt) {
 		this.deletedAt = deletedAt;
 	}

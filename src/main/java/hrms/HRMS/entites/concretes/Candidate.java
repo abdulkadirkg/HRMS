@@ -17,7 +17,7 @@ public class Candidate {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Candidate(int id, String name, String surname, String identifyNumber, int birthOfYear, String eMail,
+	public Candidate(int id, String name, String surname, String identifyNumber, Date birth, String eMail,
 			String password, Date createdAt, Date updatedAt, Date deletedAt, ConfirmationByMail confirmationByMail,
 			ConfirmationByStaff confirmationByStaff) {
 		super();
@@ -25,7 +25,7 @@ public class Candidate {
 		this.name = name;
 		this.surname = surname;
 		this.identifyNumber = identifyNumber;
-		this.birthOfYear = birthOfYear;
+		this.birth = birth;
 		this.eMail = eMail;
 		this.password = password;
 		this.createdAt = createdAt;
@@ -45,7 +45,7 @@ public class Candidate {
 	@Column(name = "identify_number")
 	String identifyNumber;
 	@Column(name = "birth_of_year")
-	int birthOfYear;
+	Date birth;
 	@Column(name = "e_mail")
 	String eMail;
 	@Column(name = "password")
@@ -86,11 +86,11 @@ public class Candidate {
 	public void setIdentifyNumber(String identifyNumber) {
 		this.identifyNumber = identifyNumber;
 	}
-	public int getBirthOfYear() {
-		return birthOfYear;
+	public Date getBirth() {
+		return birth;
 	}
-	public void setBirthOfYear(int birthOfYear) {
-		this.birthOfYear = birthOfYear;
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 	public String geteMail() {
 		return eMail;
