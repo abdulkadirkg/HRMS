@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "confirmationByStaff")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer"})
 public class ConfirmationByStaff {
 	public ConfirmationByStaff() {
 		super();
@@ -34,7 +34,6 @@ public class ConfirmationByStaff {
 	@Column(name = "is_confirmed")
 	boolean isConfirmed;
 	@OneToOne(mappedBy = "confirmationByStaff")
-	@JsonIgnore
 	Employer employer;
 
 	public int getId() {

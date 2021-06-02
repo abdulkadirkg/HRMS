@@ -16,6 +16,10 @@ public interface PositionService {
 	IDataResult<Position> get(int Id);
 
 	IDataResult<List<Position>> getAll();
+	
+	IDataResult<List<Position>> getAll(int pageNumber, int pageSize);
+	
+	IDataResult<List<Position>> getAllSorted();
 
 	IDataResult<Position> getByJobName(String jobName);
 
