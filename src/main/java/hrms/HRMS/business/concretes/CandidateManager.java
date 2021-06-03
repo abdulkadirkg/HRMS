@@ -1,11 +1,13 @@
 package hrms.HRMS.business.concretes;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hrms.HRMS.business.abstracts.CandidateService;
+import hrms.HRMS.business.abstracts.ConfirmationByMailService;
 import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
 import hrms.HRMS.core.utilities.results.concretes.ErrorResult;
@@ -13,13 +15,15 @@ import hrms.HRMS.core.utilities.results.concretes.SuccessDataResult;
 import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
 import hrms.HRMS.dataAccess.abstracts.CandidateDao;
 import hrms.HRMS.entites.concretes.Candidate;
+import hrms.HRMS.entites.concretes.ConfirmationByMail;
 import hrms.HRMS.entites.dtos.CandidateRegisterDto;
 
 @Service
 public class CandidateManager implements CandidateService {
 	@Autowired
 	CandidateDao candidateDao;
-
+	@Autowired
+	ConfirmationByMailService confirmationByMailService;
 	@Override
 	public IResult add(Candidate candidate) {
 		this.candidateDao.save(candidate);
@@ -56,16 +60,21 @@ public class CandidateManager implements CandidateService {
 		// Required All Fields
 		// ------------------
 		// Unique E-Mail
-		Candidate candidate = this.candidateDao.getByeMail(candidateRegisterDto.geteMail());
+		Candidate candidate = this.candidateDao.getByeMailOrIdentifyNumber(candidateRegisterDto.geteMail(),candidateRegisterDto.getIdentifyNumber());
 		if (candidate != null) {
-			return new ErrorResult("Bu Mail Zaten Kayıtlı.");
+			return new ErrorResult("Bu Mail veya TC No Zaten Kayıtlı.");
 		}
 		
 		// Password Repeat
-		if (candidateRegisterDto.getPassword() != candidateRegisterDto.getPasswordRepeat()) {
-			return new ErrorResult("Lütfen Şifre Tekrarını Doğru Giriniz.");
-		}
+//		if (candidateRegisterDto.getPassword().toString() != candidateRegisterDto.getPasswordRepeat().toString()) {
+//			return new ErrorResult("Lütfen Şifre Tekrarını Doğru Giriniz.");
+//		}
 		
+		// THIS BLOCK IS GONNA WRAPPED BY TRANSACTION !!! IMPORTANT !!!
+		ConfirmationByMail confirmationByMail = new ConfirmationByMail();
+		confirmationByMail.setConfirmationCode(UUID.randomUUID().toString());
+		confirmationByMail.setConfirmed(false);
+		confirmationByMailService.add(confirmationByMail);
 		Candidate registerCandidate = new Candidate();
 		registerCandidate.setName(candidateRegisterDto.getName());
 		registerCandidate.setSurname(candidateRegisterDto.getSurname());
@@ -73,8 +82,9 @@ public class CandidateManager implements CandidateService {
 		registerCandidate.seteMail(candidateRegisterDto.geteMail());
 		registerCandidate.setPassword(candidateRegisterDto.getPassword());
 		registerCandidate.setIdentifyNumber(candidateRegisterDto.getIdentifyNumber());
+		registerCandidate.setConfirmationByMail(confirmationByMail);
 		this.candidateDao.save(registerCandidate);
-		return new SuccessResult("Aday Başarıyla Kaydedildi");
+		return new SuccessResult("Kayıt Başarılı. Lütfen Kaydınızın Geçerli Olabilmesi İçin Mail Adresinize Gönderdiğimiz Doğrulama Adımlarını Tamamlayınız.");
 	}
 	
 
