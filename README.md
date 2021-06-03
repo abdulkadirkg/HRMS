@@ -32,14 +32,6 @@
     
     ✅ Tamamlandı
   </li>
-   <li>
-  
-    Req 3 : Sisteme genel iş pozisyonu isimleri eklenebilmelidir. Örneğin Software Developer, Software Architect.
-    Kabul Kriterleri:
-    Bu pozisyonlar tekrar edemez. Kullanıcı uyarılır.
-    
-    ✅ Tamamlandı
-  </li>
      <li>
   
     Req 3 : Sisteme genel iş pozisyonu isimleri eklenebilmelidir. Örneğin Software Developer, Software Architect.
@@ -131,6 +123,12 @@
     (Programlama/Teknoloji adı) Örneğin; React
     Adaylar sisteme ön yazı ekleyebilmelidir. (Örneğin: Çalışmayı çok severim....)
     
+    ☝ Çalışılıyor...
+  </li>
+   <li>
+  
+    Req 13 : Bir adaya ait tüm CV bilgisi görüntülenebilmelidir.
+
     ☝ Çalışılıyor...
   </li>
 </ul>
