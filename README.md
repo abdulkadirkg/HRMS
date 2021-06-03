@@ -18,11 +18,13 @@
     
     Req 1 : İş Arayanlar sisteme kayıt olabilmelidir.
     Kabul Kriterleri:
-    Kayıt sırasında kullanıcıdan ad, soyad, tcno, doğum yılı, e-Posta, şifre, şifre tekrarı bilgileri istenir.
+    Kayıt sırasında kullanıcıdan ad, soyad, tcno, doğum yılı, e-Posta, şifre, şifre 
+    tekrarı bilgileri istenir.
     Tüm alanlar zorunludur. Kullanıcı bilgilendirilir.
     Mernis doğrulaması yapılarak sisteme kayıt gerçekleştirilir.
     Doğrulama geçerli değilse kullanıcı bilgilendirilir.
-    Daha önce kayıtlı bir e-posta veya tcno var ise kayıt gerçekleşmez. Kullanıcı bilgilendirilir.
+    Daha önce kayıtlı bir e-posta veya tcno var ise kayıt gerçekleşmez. 
+    Kullanıcı bilgilendirilir.
     Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir.
     
     ✅ Tamamlandı
@@ -31,8 +33,9 @@
     
     Req 2 : İş verenler sisteme kayıt olabilmelidir.
     Kabul Kriterleri:
-    Kayıt sırasında kullanıcıdan şirket adı, web sitesi, web sitesi ile aynı domaine sahip e-posta, telefon, 
-    şifre, şifre tekrarı bilgileri istenir. Burada amaç sisteme şirket olmayanların katılmasını engellemektir.
+    Kayıt sırasında kullanıcıdan şirket adı, web sitesi, web sitesi ile aynı domaine
+    sahip e-posta, telefon, şifre, şifre tekrarı bilgileri istenir. Burada amaç 
+    sisteme şirket olmayanların katılmasını engellemektir.
     Tüm alanlar zorunludur. Kullanıcı bilgilendirilir.
     Şirket kayıtları iki şekilde doğrulanır. Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir. 
     HRMS personelinin (bizim :)) onayı gerekmektedir.
@@ -42,7 +45,8 @@
   </li>
      <li>
   
-    Req 3 : Sisteme genel iş pozisyonu isimleri eklenebilmelidir. Örneğin Software Developer, Software Architect.
+    Req 3 : Sisteme genel iş pozisyonu isimleri eklenebilmelidir. 
+    Örneğin Software Developer, Software Architect.
     Kabul Kriterleri:
     Bu pozisyonlar tekrar edemez. Kullanıcı uyarılır.
     
@@ -70,8 +74,10 @@
   
     Req 7 : İş verenler sisteme iş ilanı ekleyebilmelidir.
     İş ilanı formunda;
-    Seçilebilir listeden (dropdown) genel iş pozisyonu seçilebilmelidir.(Örneğin Java Developer)(Zorunlu)
-    İş tanımı girişi yapılabilmelidir. (Örneğin; firmamız için JAVA, C# vb. dillere hakim....)(Zorunlu)
+    Seçilebilir listeden (dropdown) genel iş pozisyonu seçilebilmelidir.
+    (Örneğin Java Developer)(Zorunlu)
+    İş tanımı girişi yapılabilmelidir. 
+    (Örneğin; firmamız için JAVA, C# vb. dillere hakim....)(Zorunlu)
     Şehir bilgisi açılır listeden seçilebilmelidir. (Zorunlu)
     Maaş skalası için min-max girişi yapılabilmelidir. (Opsiyonel)
     Açık pozisyon adedi girişi yapılabilmelidir. (Zorunlu)
@@ -83,7 +89,8 @@
   
     Req 8 : Sistemdeki tüm aktif iş ilanları listelenebilmelidir.
     Liste, tablo formunda gelmelidir.
-    Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, son başvuru tarihi bilgileri olmalıdır.
+    Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, 
+    son başvuru tarihi bilgileri olmalıdır.
 
     ✅ Tamamlandı
   </li>
@@ -91,7 +98,8 @@
   
     Req 9 : Sistemdeki tüm aktif iş ilanları tarihe göre listelenebilmelidir.
     Liste, tablo formunda gelmelidir.
-    Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, son başvuru tarihi bilgileri olmalıdır.
+    Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi,
+    son başvuru tarihi bilgileri olmalıdır.
 
     ✅ Tamamlandı
   </li>
@@ -99,7 +107,8 @@
   
     Req 10 : Sistemde bir firmaya ait tüm aktif iş ilanları listelenebilmelidir.
     Liste, tablo formunda gelmelidir.
-    Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, son başvuru tarihi bilgileri olmalıdır.
+    Listede firmadı, genel iş pozisyonu adı, açık pozisyon adedi, yayın tarihi, 
+    son başvuru tarihi bilgileri olmalıdır.
     
     ✅ Tamamlandı
   </li>
@@ -115,15 +124,16 @@
     Adaylar okudukları okulları sisteme ekleyebilmelidir. (Okul adı, bölüm)
     Bu okullarda hangi yıllarda okuduklarını sisteme girebilmelidir.
     Eğer mezun değilse mezuniyet yılı boş geçilebilmelidir.
-    Adayların okudukları okullar mezuniyet yılına göre tersten sıralanabilmelidir. Mezun olunmamışsa yine bu okul en üstte 
-    ve "devam ediyor" olarak görüntülenmelidir.
+    Adayların okudukları okullar mezuniyet yılına göre tersten sıralanabilmelidir. 
+    Mezun olunmamışsa yine bu okul en üstte ve "devam ediyor" olarak görüntülenmelidir.
     Adaylar iş tecübelerini girebilmelidir. (İş yeri adı, pozisyon)
     Bu tecrübelerini hangi yıllarda yaptıklarını sisteme girebilmelidir.
     Eğer hala çalışıyorsa işten ayrılma yılı boş geçilebilmelidir.
-    Adayların tecrübeleri yıla göre tersten sıralanabilmelidir. Hala çalışıyorsa yine bu tecrübesi en üstte ve 
-    "devam ediyor" olarak görüntülenmelidir.
+    Adayların tecrübeleri yıla göre tersten sıralanabilmelidir. 
+    Hala çalışıyorsa yine bu tecrübesi en üstte ve "devam ediyor" olarak görüntülenmelidir.
     Adaylar bildikleri yabancı dilleri sisteme girebilmelidir. ( Dil, Seviye -> 1-5)
-    Adaylar sisteme fotoğraf girebilmelidir. Adaya ait fotoğraf https://cloudinary.com/pricing sisteminde tutulacaktır. 
+    Adaylar sisteme fotoğraf girebilmelidir. Adaya ait fotoğraf 
+    https://cloudinary.com/pricing sisteminde tutulacaktır. 
     (Dış servis entegrasyonu) Ücretsiz hesabı kullanınız.
     Adaylar sisteme github adreslerini girebilmelidir.
     Adaylar sisteme linkedin adreslerini girebilmelidir.
