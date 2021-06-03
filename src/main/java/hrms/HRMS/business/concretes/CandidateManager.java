@@ -24,6 +24,7 @@ public class CandidateManager implements CandidateService {
 	CandidateDao candidateDao;
 	@Autowired
 	ConfirmationByMailService confirmationByMailService;
+
 	@Override
 	public IResult add(Candidate candidate) {
 		this.candidateDao.save(candidate);
@@ -54,22 +55,44 @@ public class CandidateManager implements CandidateService {
 
 	@Override
 	public IResult register(CandidateRegisterDto candidateRegisterDto) {
-		// "Mernis" Validation
+		// "MERNIS" Validation
 		MernisManager mernisManager = new MernisManager();
-		mernisManager.checkMernis(candidateRegisterDto.getName(), candidateRegisterDto.getSurname(), candidateRegisterDto.getBirthDate());
+		mernisManager.checkMernis(candidateRegisterDto.getName(), candidateRegisterDto.getSurname(),
+				candidateRegisterDto.getBirthDate());
 		// Required All Fields
-		// ------------------
+		if (candidateRegisterDto.getBirthDate() == null) {
+			return new ErrorResult("Lütfen Doğum Tarihinizi Giriniz");
+		}
+		if (candidateRegisterDto.geteMail() == null) {
+			return new ErrorResult("Lütfen E-Mail Adresinizi Giriniz");
+		}
+		if (candidateRegisterDto.getIdentifyNumber() == null) {
+			return new ErrorResult("Lütfen TC Kimlik Numaranızı Giriniz");
+		}
+		if (candidateRegisterDto.getName() == null) {
+			return new ErrorResult("Lütfen Adınızı Giriniz");
+		}
+		if (candidateRegisterDto.getSurname() == null) {
+			return new ErrorResult("Lütfen Soyadınızı Giriniz");
+		}
+		if (candidateRegisterDto.getPassword() == null) {
+			return new ErrorResult("Lütfen Şifrenizi Giriniz");
+		}
+		if (candidateRegisterDto.getPasswordRepeat() == null) {
+			return new ErrorResult("Lütfen Şifre Tekrarınızı Giriniz");
+		}
+
 		// Unique E-Mail
-		Candidate candidate = this.candidateDao.getByeMailOrIdentifyNumber(candidateRegisterDto.geteMail(),candidateRegisterDto.getIdentifyNumber());
-		if (candidate != null) {
+		if (this.candidateDao.getByeMailOrIdentifyNumber(candidateRegisterDto.geteMail(),
+				candidateRegisterDto.getIdentifyNumber()) != null) {
 			return new ErrorResult("Bu Mail veya TC No Zaten Kayıtlı.");
 		}
-		
+
 		// Password Repeat
 //		if (candidateRegisterDto.getPassword().toString() != candidateRegisterDto.getPasswordRepeat().toString()) {
 //			return new ErrorResult("Lütfen Şifre Tekrarını Doğru Giriniz.");
 //		}
-		
+
 		// THIS BLOCK IS GONNA WRAPPED BY TRANSACTION !!! IMPORTANT !!!
 		ConfirmationByMail confirmationByMail = new ConfirmationByMail();
 		confirmationByMail.setConfirmationCode(UUID.randomUUID().toString());
@@ -84,8 +107,8 @@ public class CandidateManager implements CandidateService {
 		registerCandidate.setIdentifyNumber(candidateRegisterDto.getIdentifyNumber());
 		registerCandidate.setConfirmationByMail(confirmationByMail);
 		this.candidateDao.save(registerCandidate);
-		return new SuccessResult("Kayıt Başarılı. Lütfen Kaydınızın Geçerli Olabilmesi İçin Mail Adresinize Gönderdiğimiz Doğrulama Adımlarını Tamamlayınız.");
+		return new SuccessResult(
+				"Kayıt Başarılı. Lütfen Kaydınızın Geçerli Olabilmesi İçin Mail Adresinize Gönderdiğimiz Doğrulama Adımlarını Tamamlayınız.");
 	}
-	
 
 }
