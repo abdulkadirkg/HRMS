@@ -30,6 +30,9 @@ public class PositionManager implements PositionService {
 
 	@Override
 	public IResult add(Position position) {
+		if (this.positionDao.getByJobName(position.getJobName()) != null) {
+			return new ErrorResult("Bu Pozisyon Zaten Var");
+		}
 		positionDao.save(position);
 		return new SuccessResult("Abdulkadir KG");
 	}
@@ -76,7 +79,6 @@ public class PositionManager implements PositionService {
 	@Override
 	public IDataResult<List<Position>> getByName(String jobName) {
 		return new SuccessDataResult<List<Position>>(positionDao.getByName(jobName));
-
 	}
 
 	@Override

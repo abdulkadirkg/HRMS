@@ -30,8 +30,8 @@ public class PositionController {
 
 	@PostMapping("/add")
 	public IResult add(@RequestBody Position position) {
-		this.positionService.add(position);
-		return new SuccessResult("Pozisyon Ekleme İşlemi Başarılı");
+		return this.positionService.add(position);
+
 	}
 
 	@GetMapping("/getAll")
