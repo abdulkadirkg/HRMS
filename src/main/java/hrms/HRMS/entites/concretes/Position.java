@@ -1,16 +1,23 @@
 package hrms.HRMS.entites.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "positions")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","position"})
 public class Position {
 	public Position(int id, String jobName, Date createdAt, Date updatedAt, Date deletedAt) {
 		super();
@@ -36,7 +43,10 @@ public class Position {
 	Date updatedAt = new Date();
 	@Column(name = "deleted_at")
 	Date deletedAt = new Date();
-
+	
+	@OneToMany(mappedBy = "position")
+	List<JobAdvertisement> jobAdvertisement;
+	
 	public int getId() {
 		return id;
 	}

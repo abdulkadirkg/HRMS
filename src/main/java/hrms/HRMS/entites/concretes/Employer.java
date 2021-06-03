@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "employers")
-
 public class Employer {
 	public Employer() {
 		super();

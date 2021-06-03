@@ -26,8 +26,7 @@ public class EmployerManager implements EmployerService {
 	@Override
 	public IResult add(Employer employer) {
 		employerDao.save(employer);
-		//return new SuccessResult("İşlem Başarılı");
-		return null;
+		return new SuccessResult("İşveren Başarıyla Eklendi");
 	}
 
 	@Override
@@ -39,13 +38,12 @@ public class EmployerManager implements EmployerService {
 	@Override
 	public IResult delete(Employer employer) {
 		employerDao.delete(employer);
-		return null;
+		return new SuccessResult("İşveren Başarıyla Silindi");
 	}
 
 	@Override
 	public IDataResult<Employer> get(int Id) {
-		//return new SuccessDataResult<Position>(positionDao.findById(Id));
-		return null;
+		return new SuccessDataResult<Employer>(employerDao.getById(Id));
 	}
 
 	@Override
