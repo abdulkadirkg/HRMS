@@ -2,6 +2,13 @@
 <p align="center">
   <img width="200" src="https://user-images.githubusercontent.com/51646136/120723372-44bbb900-c4da-11eb-8c94-a32c0dc68961.png"/>
   <h1 align="center">Human Resources Management System</h1>
+  <p float="left">
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=eclipse&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+  </p>
 </p>
 
 <b><h2>İsterler</h2></b>
