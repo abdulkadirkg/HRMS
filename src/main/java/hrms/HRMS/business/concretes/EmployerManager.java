@@ -16,6 +16,7 @@ import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
 import hrms.HRMS.dataAccess.abstracts.EmployerDao;
 import hrms.HRMS.entites.concretes.ConfirmationByMail;
 import hrms.HRMS.entites.concretes.Employer;
+import hrms.HRMS.entites.concretes.JobAdvertisement;
 import hrms.HRMS.entites.dtos.EmployerRegisterDto;
 @Service
 public class EmployerManager implements EmployerService {
@@ -31,8 +32,10 @@ public class EmployerManager implements EmployerService {
 
 	@Override
 	public IResult update(Employer employer) {
-		//positionDao.(position);
-		return null;
+		Employer employerToUpdate = employerDao.getById(employer.getId());
+		employerToUpdate = employer;
+		employerDao.save(employerToUpdate);
+		return new SuccessResult("İşveren Başarıyla Güncellendi");
 	}
 
 	@Override

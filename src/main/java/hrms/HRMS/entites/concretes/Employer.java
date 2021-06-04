@@ -12,6 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.URL;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "employers")
@@ -43,13 +49,25 @@ public class Employer {
 	@Column(name = "id")
 	int id;
 	@Column(name = "company_name")
+	@NotNull
+	@NotBlank
 	String companyName;
 	@Column(name = "web_site")
+	@NotNull
+	@NotBlank
+	@URL
 	String webSite;
+	@NotNull
+	@NotBlank
+	@Email
 	@Column(name = "e_mail")
 	String eMail;
+	@NotNull
+	@NotBlank
 	@Column(name = "phone")
 	String phone;
+	@NotNull
+	@NotBlank
 	@Column(name = "password")
 	String password;
 	@OneToOne()

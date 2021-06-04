@@ -12,8 +12,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "positions")
@@ -36,8 +38,12 @@ public class Position {
 	@Column(name = "id")
 	int id;
 	@Column(name = "job_name")
+	@NotNull
+	@NotBlank
 	String jobName;
 	@Column(name = "created_at")
+	@NotNull
+	@NotBlank
 	Date createdAt = new Date();
 	@Column(name = "updated_at")
 	Date updatedAt = new Date();
