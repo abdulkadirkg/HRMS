@@ -55,7 +55,7 @@ public class SchoolController {
 	IDataResult<List<School>> getBySchoolNameEndsWith(@RequestParam String school) {
 		return schoolService.getBySchoolNameEndsWith(school);
 	}
-
+ 
 	@GetMapping("/getByDepartmentNameContains")
 	IDataResult<List<School>> getByDepartmentNameContains(@RequestParam String department) {
 		return schoolService.getByDepartmentNameContains(department);
