@@ -17,7 +17,7 @@ import hrms.HRMS.entites.concretes.JobExperience;
 
 @RestController
 @RequestMapping("/api/jobexperiences")
-public class JobExperienceController {
+public class JobExperiencesController {
 	@Autowired
 	JobExperienceService jobExperienceService;
 

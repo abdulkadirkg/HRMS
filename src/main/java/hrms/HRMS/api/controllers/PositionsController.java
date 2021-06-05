@@ -19,11 +19,11 @@ import hrms.HRMS.entites.concretes.Position;
 
 @RestController
 @RequestMapping("/api/positions")
-public class PositionController {
+public class PositionsController {
 	private PositionService positionService;
 
 	@Autowired
-	public PositionController(PositionService positionService) {
+	public PositionsController(PositionService positionService) {
 		super();
 		this.positionService = positionService;
 	}

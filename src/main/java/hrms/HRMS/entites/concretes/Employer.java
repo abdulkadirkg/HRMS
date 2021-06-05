@@ -73,7 +73,7 @@ public class Employer {
 	@OneToOne()
 	@JoinColumn(name = "mail_confirmation_id", referencedColumnName = "id")
 	ConfirmationByMail confirmationByMail;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "staff_confirmation_id", referencedColumnName = "id")
 	ConfirmationByStaff confirmationByStaff;
 	@Column(name = "created_at")

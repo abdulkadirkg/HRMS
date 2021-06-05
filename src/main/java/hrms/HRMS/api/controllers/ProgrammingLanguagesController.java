@@ -17,7 +17,7 @@ import hrms.HRMS.entites.concretes.ProgrammingLanguage;
 
 @RestController
 @RequestMapping("/api/programminglanguages")
-public class ProgrammingLanguageController {
+public class ProgrammingLanguagesController {
 	@Autowired
 	ProgrammingLanguageService programmingLanguageService;
 	@PostMapping("/add")

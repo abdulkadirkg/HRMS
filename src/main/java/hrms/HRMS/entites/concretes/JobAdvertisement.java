@@ -20,6 +20,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "job_advertisements")
 public class JobAdvertisement {
+
+
 	public JobAdvertisement(int id, String jobDescription, City city, Position position, Double salaryMax,
 			Double salaryMin, int positionCount, Date applicationDeadline, Date createdAt, Date updatedAt,
 			Date deletedAt, Boolean isActive) {
@@ -51,7 +53,7 @@ public class JobAdvertisement {
 	@Column(name = "job_description")
 	String jobDescription;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "city_id", referencedColumnName = "id")
 	City city;
 	

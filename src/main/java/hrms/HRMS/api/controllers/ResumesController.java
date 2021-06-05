@@ -17,7 +17,7 @@ import hrms.HRMS.entites.concretes.Resume;
 
 @RequestMapping("/api/resumes")
 @RestController
-public class ResumeController {
+public class ResumesController {
 	@Autowired
 	ResumeService resumeService;
 

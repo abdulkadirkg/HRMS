@@ -2,6 +2,8 @@ package hrms.HRMS.business.abstracts;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
 import hrms.HRMS.entites.concretes.Candidate;
@@ -14,4 +16,5 @@ public interface CandidateService {
 	IDataResult<Candidate> get(int Id);
 	IDataResult<List<Candidate>> getAll();
 	IResult register(CandidateRegisterDto candidateRegisterDto);
+	IResult uploadImage(int candidateId, MultipartFile image);
 }

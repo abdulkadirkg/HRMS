@@ -17,7 +17,7 @@ import hrms.HRMS.entites.concretes.Language;
 
 @RestController
 @RequestMapping("/api/languages")
-public class LanguageController {
+public class LanguagesController {
 	@Autowired
 	LanguageService languageService;
 

@@ -19,7 +19,7 @@ import hrms.HRMS.entites.concretes.JobAdvertisement;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
-public class JobAdvertisementController {
+public class JobAdvertisementsController {
 	@Autowired
 	JobAdvertisementService jobAdvertisementService;
 

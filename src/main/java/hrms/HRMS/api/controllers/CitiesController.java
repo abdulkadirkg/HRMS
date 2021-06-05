@@ -17,7 +17,7 @@ import hrms.HRMS.entites.concretes.City;
 
 @RestController
 @RequestMapping("/api/cities")
-public class CityController {
+public class CitiesController {
 	@Autowired
 	CityService cityService;
 	

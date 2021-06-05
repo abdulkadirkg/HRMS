@@ -17,7 +17,7 @@ import hrms.HRMS.entites.concretes.School;
 
 @RestController
 @RequestMapping("/api/schools")
-public class SchoolController {
+public class SchoolsController {
 	@Autowired
 	SchoolService schoolService;
 

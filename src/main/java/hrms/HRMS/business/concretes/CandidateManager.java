@@ -1,13 +1,16 @@
 package hrms.HRMS.business.concretes;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import hrms.HRMS.business.abstracts.CandidateService;
 import hrms.HRMS.business.abstracts.ConfirmationByMailService;
+import hrms.HRMS.core.helpers.ImageUploadService;
 import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
 import hrms.HRMS.core.utilities.results.concretes.ErrorResult;
@@ -20,11 +23,9 @@ import hrms.HRMS.entites.dtos.CandidateRegisterDto;
 
 @Service
 public class CandidateManager implements CandidateService {
-	@Autowired
-	CandidateDao candidateDao;
-	@Autowired
-	ConfirmationByMailService confirmationByMailService;
-
+	@Autowired CandidateDao candidateDao;
+	@Autowired ConfirmationByMailService confirmationByMailService;
+	@Autowired ImageUploadService imageUploadHelper;
 	@Override
 	public IResult add(Candidate candidate) {
 		this.candidateDao.save(candidate);
@@ -109,6 +110,16 @@ public class CandidateManager implements CandidateService {
 		this.candidateDao.save(registerCandidate);
 		return new SuccessResult(
 				"Kayıt Başarılı. Lütfen Kaydınızın Geçerli Olabilmesi İçin Mail Adresinize Gönderdiğimiz Doğrulama Adımlarını Tamamlayınız.");
+	}
+
+	@Override
+	public IResult uploadImage(int candidateId, MultipartFile image) {
+		Map<String, String> result = imageUploadHelper.uploadImage(image).getData();
+		String url = result.get("url");
+		Candidate candidate = candidateDao.getById(candidateId);
+		candidate.setProfilePicture(url);
+		this.candidateDao.save(candidate);
+		return new SuccessResult("Resim Ekleme Başarılı");
 	}
 
 }

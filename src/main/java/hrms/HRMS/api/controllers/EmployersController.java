@@ -17,10 +17,10 @@ import hrms.HRMS.entites.dtos.EmployerRegisterDto;
 
 @RestController
 @RequestMapping("/api/employers")
-public class EmployerController {
+public class EmployersController {
 	EmployerService employerService;
 	@Autowired
-	public EmployerController(EmployerService employerService) {
+	public EmployersController(EmployerService employerService) {
 		super();
 		this.employerService = employerService;
 	}
