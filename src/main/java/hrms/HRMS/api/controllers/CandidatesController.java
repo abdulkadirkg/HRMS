@@ -19,6 +19,7 @@ import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
 import hrms.HRMS.entites.concretes.Candidate;
 import hrms.HRMS.entites.dtos.CandidateRegisterDto;
+import hrms.HRMS.entites.dtos.DetailedCandidateDto;
 
 @RestController
 @RequestMapping("/api/candidates")
@@ -54,6 +55,11 @@ public class CandidatesController {
 	@GetMapping("/getAll")
 	public IDataResult<List<Candidate>> getAll() {
 		return this.candidateService.getAll();
+	}
+	
+	@GetMapping("/getDetailedCandidate")
+	public IDataResult<DetailedCandidateDto> getDetailedCandidate(@RequestParam int id) {
+		return this.candidateService.getDetailedCandidate(id);
 	}
 
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, consumes = { "multipart/form-data" })

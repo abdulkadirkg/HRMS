@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -31,6 +32,7 @@ public class Language {
 	
 	@ManyToOne
 	@JoinColumn(name = "candidate_id")
+	@JsonIgnore
 	Candidate candidate;
 	
 	@Column(name = "level")

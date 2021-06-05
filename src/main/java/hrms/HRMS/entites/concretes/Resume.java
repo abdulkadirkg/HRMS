@@ -10,10 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "resume")
+@Table(name = "resumes")
 public class Resume {
 	public Resume() {
 		super();
@@ -42,6 +43,7 @@ public class Resume {
 	
 	@ManyToOne
 	@JoinColumn(name = "candidate_id")
+	@JsonIgnore
 	Candidate candidate;
 
 	public int getId() {

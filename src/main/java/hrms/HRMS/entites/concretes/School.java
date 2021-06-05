@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -59,6 +60,7 @@ public class School {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "candidate_id")
+	@JsonIgnore
 	Candidate candidate;
 
 	public int getId() {

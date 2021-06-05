@@ -10,6 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import hrms.HRMS.business.abstracts.CandidateService;
 import hrms.HRMS.business.abstracts.ConfirmationByMailService;
+import hrms.HRMS.business.abstracts.JobExperienceService;
+import hrms.HRMS.business.abstracts.LanguageService;
+import hrms.HRMS.business.abstracts.ProgrammingLanguageService;
+import hrms.HRMS.business.abstracts.ResumeService;
+import hrms.HRMS.business.abstracts.SchoolService;
 import hrms.HRMS.core.helpers.ImageUploadService;
 import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
@@ -20,12 +25,18 @@ import hrms.HRMS.dataAccess.abstracts.CandidateDao;
 import hrms.HRMS.entites.concretes.Candidate;
 import hrms.HRMS.entites.concretes.ConfirmationByMail;
 import hrms.HRMS.entites.dtos.CandidateRegisterDto;
+import hrms.HRMS.entites.dtos.DetailedCandidateDto;
 
 @Service
 public class CandidateManager implements CandidateService {
 	@Autowired CandidateDao candidateDao;
 	@Autowired ConfirmationByMailService confirmationByMailService;
 	@Autowired ImageUploadService imageUploadHelper;
+	@Autowired JobExperienceService jobExperienceService;
+	@Autowired LanguageService languageService;
+	@Autowired ResumeService resumeService;
+	@Autowired SchoolService schoolService;
+	@Autowired ProgrammingLanguageService programmingLanguageService;
 	@Override
 	public IResult add(Candidate candidate) {
 		this.candidateDao.save(candidate);
@@ -120,6 +131,18 @@ public class CandidateManager implements CandidateService {
 		candidate.setProfilePicture(url);
 		this.candidateDao.save(candidate);
 		return new SuccessResult("Resim Ekleme Başarılı");
+	}
+
+	@Override
+	public IDataResult<DetailedCandidateDto> getDetailedCandidate(int Id) {
+		DetailedCandidateDto detailedCandidateDto = new DetailedCandidateDto();
+		detailedCandidateDto.setCandidate(get(Id).getData());
+		detailedCandidateDto.setJobExperiences(jobExperienceService.getByCandidate_Id(Id).getData());
+		detailedCandidateDto.setLanguages(languageService.getByCandidate_Id(Id).getData());
+		detailedCandidateDto.setProgrammingLanguages(programmingLanguageService.getByCandidate_Id(Id).getData());
+		detailedCandidateDto.setSchools(schoolService.getByCandidate_Id(Id).getData());
+		detailedCandidateDto.setResumes(resumeService.getByCandidate_Id(Id).getData());
+		return new SuccessDataResult<DetailedCandidateDto>(detailedCandidateDto);
 	}
 
 }
