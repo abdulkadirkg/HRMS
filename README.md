@@ -1,4 +1,4 @@
-✅ Tamamlandı# HRMS
+# HRMS
 <p align="center">
   <img width="200" src="https://user-images.githubusercontent.com/51646136/120723372-44bbb900-c4da-11eb-8c94-a32c0dc68961.png"/>
   <h1 align="center">Human Resources Management System</h1>
