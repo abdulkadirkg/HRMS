@@ -141,7 +141,7 @@
     (Programlama/Teknoloji adı) Örneğin; React
     Adaylar sisteme ön yazı ekleyebilmelidir. (Örneğin: Çalışmayı çok severim....)
     
-    ✅ Tamamlandı
+    ✅ Tamamlandı 
   </li>
    <li>
   
