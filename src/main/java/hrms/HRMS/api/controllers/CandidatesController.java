@@ -59,7 +59,6 @@ public class CandidatesController {
 	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST, consumes = { "multipart/form-data" })
 	@ResponseBody 
 	public IResult uploadImage(@RequestParam int candidateId, @RequestPart("file") MultipartFile image) {
-		System.out.println(image.getOriginalFilename());
 		return this.candidateService.uploadImage(candidateId, image);
 	}
 }
