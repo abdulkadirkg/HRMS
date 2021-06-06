@@ -53,8 +53,8 @@ public class JobAdvertisement {
 	@Column(name = "job_description")
 	String jobDescription;
 
-	@ManyToOne()
-	@JoinColumn(name = "city_id", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "city_id")
 	City city;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

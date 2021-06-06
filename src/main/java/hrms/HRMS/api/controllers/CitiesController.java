@@ -22,27 +22,27 @@ import hrms.HRMS.entites.concretes.City;
 public class CitiesController {
 	@Autowired
 	CityService cityService;
-	
+
 	@GetMapping("/get")
-	public IDataResult<City> get(@RequestParam int Id){
+	public IDataResult<City> get(@RequestParam int Id) {
 		return cityService.get(Id);
-	} 
-	
+	}
+
 	@GetMapping("/getAll")
-	public IDataResult<List<City>> getAll(){
+	public IDataResult<List<City>> getAll() {
 		return cityService.getAll();
 	}
-	
+
 	@GetMapping("/getByPlateNumber")
-	public IDataResult<City> getByPlateNumber(@RequestParam int plateNumber){
+	public IDataResult<City> getByPlateNumber(@RequestParam int plateNumber) {
 		return cityService.getByPlateNumber(plateNumber);
 	}
-	
+
 	@PostMapping("/add")
 	public IResult add(@RequestBody City city) {
 		return cityService.add(city);
 	}
-	
+
 	@PostMapping("/delete")
 	public IResult delete(@RequestBody City city) {
 		return cityService.delete(city);
