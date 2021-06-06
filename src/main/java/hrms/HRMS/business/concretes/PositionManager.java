@@ -34,7 +34,7 @@ public class PositionManager implements PositionService {
 			return new ErrorResult("Bu Pozisyon Zaten Var");
 		}
 		positionDao.save(position);
-		return new SuccessResult("Abdulkadir KG");
+		return new SuccessResult("Pozisyon Başarıyla Eklendi");
 	}
 
 	@Override
