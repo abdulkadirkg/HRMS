@@ -35,7 +35,7 @@ public class JobAdvertisementsController {
 		return jobAdvertisementService.update(jobAdvertisement);
 	}
 	
-	@PostMapping("/delet")
+	@PostMapping("/delete")
 	public IResult delete(@RequestBody JobAdvertisement jobAdvertisement)
 	{
 		return jobAdvertisementService.delete(jobAdvertisement);
