@@ -62,7 +62,7 @@ public class JobAdvertisement {
 	Position position;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employer_id")
+	@JoinColumn(name = "employer_id", referencedColumnName = "id")
 	Employer employer;
 
 	@Column(name = "salary_max")

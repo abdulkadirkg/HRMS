@@ -1,6 +1,7 @@
 package hrms.HRMS.entites.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -23,10 +25,9 @@ import com.sun.istack.NotNull;
 @Table(name = "employers")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
 public class Employer {
-	
 
 	public Employer(int id, @NotBlank String companyName, @NotBlank @URL String webSite, @NotBlank @Email String eMail,
-			@NotBlank String phone, @NotBlank String password, JobAdvertisement jobAdvertisement,
+			@NotBlank String phone, @NotBlank String password, List<JobAdvertisement> jobAdvertisement,
 			ConfirmationByMail confirmationByMail, ConfirmationByStaff confirmationByStaff, Date createdAt,
 			Date updatedAt, Date deletedAt) {
 		super();
@@ -75,8 +76,8 @@ public class Employer {
 	@NotBlank
 	@Column(name = "password")
 	String password;
-	@OneToOne(mappedBy = "employer")
-	JobAdvertisement jobAdvertisement;
+	@OneToMany(mappedBy = "employer")
+	List<JobAdvertisement> jobAdvertisement;
 	@OneToOne()
 	@JoinColumn(name = "mail_confirmation_id", referencedColumnName = "id")
 	ConfirmationByMail confirmationByMail;
@@ -178,11 +179,11 @@ public class Employer {
 		this.deletedAt = deletedAt;
 	}
 
-	public JobAdvertisement getJobAdvertisement() {
+	public List<JobAdvertisement> getJobAdvertisement() {
 		return jobAdvertisement;
 	}
 
-	public void setJobAdvertisement(JobAdvertisement jobAdvertisement) {
+	public void setJobAdvertisement(List<JobAdvertisement> jobAdvertisement) {
 		this.jobAdvertisement = jobAdvertisement;
 	}
 
