@@ -21,15 +21,15 @@ import javax.persistence.Table;
 @Table(name = "job_advertisements")
 public class JobAdvertisement {
 
-
-	public JobAdvertisement(int id, String jobDescription, City city, Position position, Double salaryMax,
-			Double salaryMin, int positionCount, Date applicationDeadline, Date createdAt, Date updatedAt,
-			Date deletedAt, Boolean isActive) {
+	public JobAdvertisement(int id, String jobDescription, City city, Position position, Employer employer,
+			Double salaryMax, Double salaryMin, int positionCount, Date applicationDeadline, Date createdAt,
+			Date updatedAt, Date deletedAt, Boolean isActive) {
 		super();
 		this.id = id;
 		this.jobDescription = jobDescription;
 		this.city = city;
 		this.position = position;
+		this.employer = employer;
 		this.salaryMax = salaryMax;
 		this.salaryMin = salaryMin;
 		this.positionCount = positionCount;
@@ -56,10 +56,14 @@ public class JobAdvertisement {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "city_id")
 	City city;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "position_id")
 	Position position;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employer_id")
+	Employer employer;
 
 	@Column(name = "salary_max")
 	Double salaryMax;
@@ -179,5 +183,13 @@ public class JobAdvertisement {
 
 	public void setPosition(Position position) {
 		this.position = position;
+	}
+
+	public Employer getEmployer() {
+		return employer;
+	}
+
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 }

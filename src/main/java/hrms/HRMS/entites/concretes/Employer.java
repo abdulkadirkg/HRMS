@@ -2,7 +2,6 @@ package hrms.HRMS.entites.concretes;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,19 +16,17 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.URL;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "employers")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
 public class Employer {
-	public Employer() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Employer(int id, String companyName, String webSite, String eMail, String phone, String password,
-			ConfirmationByMail confirmationByMail, ConfirmationByStaff confirmationByStaff, Date createdAt,
-			Date updatedAt, Date deletedAt) {
+	public Employer(int id, @NotBlank String companyName, @NotBlank @URL String webSite, @NotBlank @Email String eMail,
+			@NotBlank String phone, @NotBlank String password,
+			hrms.HRMS.entites.concretes.JobAdvertisement jobAdvertisement, ConfirmationByMail confirmationByMail,
+			ConfirmationByStaff confirmationByStaff, Date createdAt, Date updatedAt, Date deletedAt) {
 		super();
 		this.id = id;
 		this.companyName = companyName;
@@ -37,11 +34,17 @@ public class Employer {
 		this.eMail = eMail;
 		this.phone = phone;
 		this.password = password;
+		JobAdvertisement = jobAdvertisement;
 		this.confirmationByMail = confirmationByMail;
 		this.confirmationByStaff = confirmationByStaff;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.deletedAt = deletedAt;
+	}
+
+	public Employer() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Id
@@ -70,6 +73,8 @@ public class Employer {
 	@NotBlank
 	@Column(name = "password")
 	String password;
+	@OneToOne(mappedBy = "employer")
+	JobAdvertisement jobAdvertisement;
 	@OneToOne()
 	@JoinColumn(name = "mail_confirmation_id", referencedColumnName = "id")
 	ConfirmationByMail confirmationByMail;
@@ -169,5 +174,13 @@ public class Employer {
 
 	public void setDeletedAt(Date deletedAt) {
 		this.deletedAt = deletedAt;
+	}
+
+	public JobAdvertisement getJobAdvertisement() {
+		return JobAdvertisement;
+	}
+
+	public void setJobAdvertisement(JobAdvertisement jobAdvertisement) {
+		JobAdvertisement = jobAdvertisement;
 	}
 }
