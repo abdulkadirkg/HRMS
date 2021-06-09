@@ -16,6 +16,7 @@ import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
 import hrms.HRMS.core.utilities.results.concretes.SuccessDataResult;
 import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
+import hrms.HRMS.entites.concretes.JobAdvertisement;
 import hrms.HRMS.entites.concretes.Position;
 
 @RestController
@@ -34,6 +35,12 @@ public class PositionsController {
 	public IResult add(@RequestBody Position position) {
 		return this.positionService.add(position);
 
+	}
+	
+	@PostMapping("/delete")
+	public IResult delete(@RequestBody Position position)
+	{
+		return positionService.delete(position);
 	}
 
 	@GetMapping("/getAll")
