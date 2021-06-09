@@ -34,6 +34,12 @@ public class JobAdvertisementsController {
 	public IResult update(@RequestBody JobAdvertisement jobAdvertisement) {
 		return jobAdvertisementService.update(jobAdvertisement);
 	}
+	
+	@PostMapping("/delet")
+	public IResult delete(@RequestBody JobAdvertisement jobAdvertisement)
+	{
+		return jobAdvertisementService.delete(jobAdvertisement);
+	}
 
 	@GetMapping("/get")
 	public IDataResult<JobAdvertisement> get(@RequestParam int Id) {
