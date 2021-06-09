@@ -23,10 +23,12 @@ import com.sun.istack.NotNull;
 @Table(name = "employers")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
 public class Employer {
+	
+
 	public Employer(int id, @NotBlank String companyName, @NotBlank @URL String webSite, @NotBlank @Email String eMail,
-			@NotBlank String phone, @NotBlank String password,
-			hrms.HRMS.entites.concretes.JobAdvertisement jobAdvertisement, ConfirmationByMail confirmationByMail,
-			ConfirmationByStaff confirmationByStaff, Date createdAt, Date updatedAt, Date deletedAt) {
+			@NotBlank String phone, @NotBlank String password, JobAdvertisement jobAdvertisement,
+			ConfirmationByMail confirmationByMail, ConfirmationByStaff confirmationByStaff, Date createdAt,
+			Date updatedAt, Date deletedAt) {
 		super();
 		this.id = id;
 		this.companyName = companyName;
@@ -34,7 +36,7 @@ public class Employer {
 		this.eMail = eMail;
 		this.phone = phone;
 		this.password = password;
-		JobAdvertisement = jobAdvertisement;
+		this.jobAdvertisement = jobAdvertisement;
 		this.confirmationByMail = confirmationByMail;
 		this.confirmationByStaff = confirmationByStaff;
 		this.createdAt = createdAt;
@@ -177,10 +179,11 @@ public class Employer {
 	}
 
 	public JobAdvertisement getJobAdvertisement() {
-		return JobAdvertisement;
+		return jobAdvertisement;
 	}
 
 	public void setJobAdvertisement(JobAdvertisement jobAdvertisement) {
-		JobAdvertisement = jobAdvertisement;
+		this.jobAdvertisement = jobAdvertisement;
 	}
+
 }
