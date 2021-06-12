@@ -147,7 +147,26 @@
   
     Req 13 : Bir adaya ait tüm CV bilgisi görüntülenebilmelidir.
 
-    ☝ Çalışılıyor...
+    ✅ Tamamlandı
+  </li>
+     <li>
+  
+    Req 14 :  İş verenler, iş ilanı paylaşırken işin yerinde veya uzaktan çalışma türlerinden 
+    hangisine uygun olduğunu seçilir kutudan girebilmelidir.
+
+    ✅ Tamamlandı
+  </li>
+     <li>
+  
+    Req 15 :  İş verenler işin çalışma zamanı özelliğini seçilir kutudan girebilmelidir. (Örneğin : Yarı Zamanlı, tam zamanlı...)
+
+    ✅ Tamamlandı
+  </li>
+     <li>
+  
+    Req 16 : İş verenler tarafından girilen iş ilanları Hrms personeli tarafından onaylandığında yayına geçmelidir.
+
+    ✅ Tamamlandı
   </li>
 </ul>
 <p align="center">
