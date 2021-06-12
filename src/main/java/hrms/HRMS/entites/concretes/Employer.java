@@ -18,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.URL;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
@@ -77,6 +78,7 @@ public class Employer {
 	@Column(name = "password")
 	String password;
 	@OneToMany(mappedBy = "employer")
+	@JsonIgnore
 	List<JobAdvertisement> jobAdvertisement;
 	@OneToOne()
 	@JoinColumn(name = "mail_confirmation_id", referencedColumnName = "id")

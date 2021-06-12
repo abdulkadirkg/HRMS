@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Builder.Default;
+
 @Entity
 @Table(name = "confirmationByStaff")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer"})
@@ -30,8 +32,8 @@ public class ConfirmationByStaff {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	int id;
-	@Column(name = "is_confirmed")
-	boolean isConfirmed;
+	@Column(name = "is_confirmed", columnDefinition = "boolean default false")
+	boolean isConfirmed = false;
 	@OneToOne(mappedBy = "confirmationByStaff")
 	Employer employer;
 

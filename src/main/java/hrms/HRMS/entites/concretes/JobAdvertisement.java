@@ -17,19 +17,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name = "job_advertisements")
 public class JobAdvertisement {
 
 	public JobAdvertisement(int id, String jobDescription, City city, Position position, Employer employer,
-			Double salaryMax, Double salaryMin, int positionCount, Date applicationDeadline, Date createdAt,
-			Date updatedAt, Date deletedAt, Boolean isActive) {
+			JobType jobType, Double salaryMax, Double salaryMin, int positionCount, Date applicationDeadline,
+			Date createdAt, Date updatedAt, Date deletedAt, Boolean isActive) {
 		super();
 		this.id = id;
 		this.jobDescription = jobDescription;
 		this.city = city;
 		this.position = position;
 		this.employer = employer;
+		this.jobType = jobType;
 		this.salaryMax = salaryMax;
 		this.salaryMin = salaryMin;
 		this.positionCount = positionCount;
@@ -64,6 +67,10 @@ public class JobAdvertisement {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employer_id", referencedColumnName = "id")
 	Employer employer;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "job_type_id")
+	JobType jobType;
 
 	@Column(name = "salary_max")
 	Double salaryMax;
@@ -191,5 +198,13 @@ public class JobAdvertisement {
 
 	public void setEmployer(Employer employer) {
 		this.employer = employer;
+	}
+
+	public JobType getJobType() {
+		return jobType;
+	}
+
+	public void setJobType(JobType jobType) {
+		this.jobType = jobType;
 	}
 }

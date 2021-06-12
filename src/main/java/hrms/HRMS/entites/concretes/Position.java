@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
@@ -21,13 +22,16 @@ import com.sun.istack.NotNull;
 @Table(name = "positions")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","position"})
 public class Position {
-	public Position(int id, String jobName, Date createdAt, Date updatedAt, Date deletedAt) {
+
+	public Position(int id, @NotBlank String jobName, @NotBlank Date createdAt, Date updatedAt, Date deletedAt,
+			List<JobAdvertisement> jobAdvertisement) {
 		super();
 		this.id = id;
 		this.jobName = jobName;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.deletedAt = deletedAt;
+		this.jobAdvertisement = jobAdvertisement;
 	}
 
 	public Position() {
@@ -51,6 +55,7 @@ public class Position {
 	Date deletedAt = new Date();
 	
 	@OneToMany(mappedBy = "position")
+	@JsonIgnore
 	List<JobAdvertisement> jobAdvertisement;
 	
 	public int getId() {
@@ -91,6 +96,14 @@ public class Position {
 
 	public void setDeletedAt(Date deletedAt) {
 		this.deletedAt = deletedAt;
+	}
+
+	public List<JobAdvertisement> getJobAdvertisement() {
+		return jobAdvertisement;
+	}
+
+	public void setJobAdvertisement(List<JobAdvertisement> jobAdvertisement) {
+		this.jobAdvertisement = jobAdvertisement;
 	}
 
 }
