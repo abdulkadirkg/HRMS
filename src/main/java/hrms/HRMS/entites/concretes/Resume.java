@@ -70,7 +70,7 @@ public class Resume {
 		this.isActive = isActive;
 	}
 
-	public Candidate getCandidate() {
+	public Candidate getCandidate() { 
 		return candidate;
 	}
 
