@@ -35,7 +35,7 @@ public class Resume {
 	int id;
 	@NotBlank
 	@NotNull
-	@Column(name = "resume_text")
+	@Column(name = "resume_text", columnDefinition="TEXT")
 	String resumeText;
 	
 	@Column(name = "is_active")

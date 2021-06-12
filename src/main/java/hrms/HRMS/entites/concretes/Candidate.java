@@ -67,9 +67,9 @@ public class Candidate {
 	String password;
 	@Column(name = "profile_picture")
 	String profilePicture;
-	@Column(name = "github_address")
+	@Column(name = "github_address",columnDefinition="TEXT")
 	String githubAddress;
-	@Column(name = "linkedin_address")
+	@Column(name = "linkedin_address",columnDefinition="TEXT")
 	String linkedinAddress;
 	@Column(name = "created_at")
 	Date createdAt = new Date();

@@ -53,7 +53,7 @@ public class JobAdvertisement {
 	@Column(name = "id")
 	int id;
 
-	@Column(name = "job_description")
+	@Column(name = "job_description", columnDefinition="TEXT")
 	String jobDescription;
 
 	@ManyToOne(fetch = FetchType.LAZY)
