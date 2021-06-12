@@ -151,7 +151,8 @@
   </li>
      <li>
   
-    Req 14 :  İş verenler, iş ilanı paylaşırken işin yerinde veya uzaktan çalışma türlerinden hangisine uygun olduğunu seçilir kutudan girebilmelidir.
+    Req 14 :  İş verenler, iş ilanı paylaşırken işin yerinde veya uzaktan çalışma türlerinden 
+    hangisine uygun olduğunu seçilir kutudan girebilmelidir.
 
     ✅ Tamamlandı
   </li>
