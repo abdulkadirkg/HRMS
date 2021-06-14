@@ -1,5 +1,12 @@
 package hrms.HRMS.entites.dtos;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+
+import com.sun.istack.NotNull;
+
 public class EmployerRegisterDto {
 	public EmployerRegisterDto() {
 		super();
@@ -15,11 +22,27 @@ public class EmployerRegisterDto {
 		this.password = password;
 		this.passwordRepeat = passwordRepeat;
 	}
+	@NotNull
+	@NotBlank(message = "Şirket Adı Alanı Boş Olamaz")
+	@Size(min = 2, max = 35)
 	String companyName;
 	String webSite;
+	@NotNull
+	@NotBlank(message = "E-Mail Alanı Boş Olamaz")
+	@Size(min = 2, max = 35)
+	@Email
 	String eMail;
+	@NotNull
+	@NotBlank(message = "Telefon Alanı Boş Olamaz")
+	@Size(min = 10, max = 13)
 	String phone;
+	@NotNull
+	@NotBlank(message = "Şifre Alanı Boş Olamaz")
+	@Size(min = 10, max = 13)
 	String password;
+	@NotNull
+	@NotBlank
+	@Size(min = 10, max = 13)
 	String passwordRepeat;
 	public String getCompanyName() {
 		return companyName;

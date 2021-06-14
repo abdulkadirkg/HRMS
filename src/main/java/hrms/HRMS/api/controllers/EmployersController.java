@@ -2,6 +2,8 @@ package hrms.HRMS.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +39,13 @@ public class EmployersController {
 		return this.employerService.getAll();
 	}
 	
+	@PostMapping("/delete")
+	public IResult delete(@RequestBody Employer employer) {
+		return this.employerService.delete(employer);
+	}
+	
 	@PostMapping("/register")
-	public IResult register(@RequestBody EmployerRegisterDto employerRegisterDto) {
+	public IResult register(@Valid @RequestBody EmployerRegisterDto employerRegisterDto) {
 		return this.employerService.register(employerRegisterDto);
 	}
 }

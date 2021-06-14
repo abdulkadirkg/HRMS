@@ -1,5 +1,7 @@
 package hrms.HRMS.entites.concretes;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,11 +15,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "confirmationByMail")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "employer" })
 public class ConfirmationByMail {
 	public ConfirmationByMail() {
 		super();
-		// TODO Auto-generated constructor stub
+		setConfirmationCode(UUID.randomUUID().toString());
 	}
 
 	public ConfirmationByMail(int id, String confirmationCode, boolean isConfirmed, Employer employer) {
@@ -34,10 +36,11 @@ public class ConfirmationByMail {
 	int id;
 	@Column(name = "confirmation_code")
 	String confirmationCode;
-	@Column(name = "is_confirmed")
+	@Column(name = "is_confirmed", columnDefinition = "boolean default false")
 	boolean isConfirmed;
 	@OneToOne(mappedBy = "confirmationByMail")
 	Employer employer;
+
 	public int getId() {
 		return id;
 	}

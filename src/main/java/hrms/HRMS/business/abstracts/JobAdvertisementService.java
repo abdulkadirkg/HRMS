@@ -15,8 +15,10 @@ public interface JobAdvertisementService {
 	IResult delete(JobAdvertisement jobAdvertisement);
 	IDataResult<JobAdvertisement> get(int Id);
 	IDataResult<List<JobAdvertisement>> getAll();
+	IDataResult<List<JobAdvertisement>> getAllByPage(int pageNumber, int pageSize);
 	IDataResult<List<JobAdvertisement>> getByApplicationDeadline(Date applicationDeadline);
 	IDataResult<List<JobAdvertisement>> getByIsActive(Boolean isActive);
 	IDataResult<List<JobAdvertisement>> getByCityPlateNumber(int plateNumber);
 	IDataResult<List<JobAdvertisement>> getAllSorted(Sort sort);
+	IDataResult<List<JobAdvertisement>> getAllByConfirmedByStaff();
 }

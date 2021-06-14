@@ -24,7 +24,7 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "employers")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisement"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "jobAdvertisement" })
 public class Employer {
 
 	public Employer(int id, @NotBlank String companyName, @NotBlank @URL String webSite, @NotBlank @Email String eMail,
@@ -67,7 +67,7 @@ public class Employer {
 	@NotNull
 	@NotBlank
 	@Email
-	@Column(name = "e_mail")
+	@Column(name = "e_mail",unique=true)
 	String eMail;
 	@NotNull
 	@NotBlank
@@ -82,9 +82,11 @@ public class Employer {
 	List<JobAdvertisement> jobAdvertisement;
 	@OneToOne()
 	@JoinColumn(name = "mail_confirmation_id", referencedColumnName = "id")
+	@JsonIgnore
 	ConfirmationByMail confirmationByMail;
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "staff_confirmation_id", referencedColumnName = "id")
+	@JsonIgnore
 	ConfirmationByStaff confirmationByStaff;
 	@Column(name = "created_at")
 	Date createdAt = new Date();

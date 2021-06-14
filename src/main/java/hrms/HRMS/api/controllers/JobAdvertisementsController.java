@@ -29,15 +29,14 @@ public class JobAdvertisementsController {
 	public IResult add(@RequestBody JobAdvertisement jobAdvertisement) {
 		return jobAdvertisementService.add(jobAdvertisement);
 	}
-	
+
 	@PostMapping("/update")
 	public IResult update(@RequestBody JobAdvertisement jobAdvertisement) {
 		return jobAdvertisementService.update(jobAdvertisement);
 	}
-	
+
 	@PostMapping("/delete")
-	public IResult delete(@RequestBody JobAdvertisement jobAdvertisement)
-	{
+	public IResult delete(@RequestBody JobAdvertisement jobAdvertisement) {
 		return jobAdvertisementService.delete(jobAdvertisement);
 	}
 
@@ -50,16 +49,32 @@ public class JobAdvertisementsController {
 	public IDataResult<List<JobAdvertisement>> getAll() {
 		return jobAdvertisementService.getAll();
 	}
-	
+
+	@GetMapping("/getAllByPage")
+	public IDataResult<List<JobAdvertisement>> getAllByPage(@RequestParam int pageNo, @RequestParam int pageSize) {
+		return jobAdvertisementService.getAllByPage(pageNo, pageSize);
+	}
+
+	@GetMapping("/getRecently")
+	public IDataResult<List<JobAdvertisement>> getRecently(@RequestParam int count) {
+		count = (count > 0) ? count : 10;
+		return jobAdvertisementService.getAllByPage(1, count);
+	}
+
+	@GetMapping("/getAllByConfirmedByStaff")
+	public IDataResult<List<JobAdvertisement>> getAllByConfirmedByStaff() {
+		return jobAdvertisementService.getAllByConfirmedByStaff();
+	}
+
 	@GetMapping("/getAllByDateDesc")
-	public IDataResult<List<JobAdvertisement>> getAllByDateDesc(){
-		Sort sort = Sort.by(Sort.Direction.DESC,"createdAt");
+	public IDataResult<List<JobAdvertisement>> getAllByDateDesc() {
+		Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
 		return jobAdvertisementService.getAllSorted(sort);
 	}
-	
+
 	@GetMapping("/getAllByDateAsc")
-	public IDataResult<List<JobAdvertisement>> getAllByDateAsc(){
-		Sort sort = Sort.by(Sort.Direction.ASC,"createdAt");
+	public IDataResult<List<JobAdvertisement>> getAllByDateAsc() {
+		Sort sort = Sort.by(Sort.Direction.ASC, "createdAt");
 		return jobAdvertisementService.getAllSorted(sort);
 	}
 

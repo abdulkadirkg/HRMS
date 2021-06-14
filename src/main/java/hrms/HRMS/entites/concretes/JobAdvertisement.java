@@ -19,13 +19,17 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "job_advertisements")
 public class JobAdvertisement {
 
+
 	public JobAdvertisement(int id, String jobDescription, City city, Position position, Employer employer,
-			JobType jobType, Double salaryMax, Double salaryMin, int positionCount, Date applicationDeadline,
-			Date createdAt, Date updatedAt, Date deletedAt, Boolean isActive) {
+			JobType jobType, ConfirmationByStaff confirmationByStaff, Double salaryMax, Double salaryMin,
+			int positionCount, Date applicationDeadline, Date createdAt, Date updatedAt, Date deletedAt,
+			Boolean isActive) {
 		super();
 		this.id = id;
 		this.jobDescription = jobDescription;
@@ -33,6 +37,7 @@ public class JobAdvertisement {
 		this.position = position;
 		this.employer = employer;
 		this.jobType = jobType;
+		this.confirmationByStaff = confirmationByStaff;
 		this.salaryMax = salaryMax;
 		this.salaryMin = salaryMin;
 		this.positionCount = positionCount;
@@ -45,7 +50,6 @@ public class JobAdvertisement {
 
 	public JobAdvertisement() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Id
@@ -71,6 +75,11 @@ public class JobAdvertisement {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "job_type_id")
 	JobType jobType;
+	
+	@OneToOne()
+	@JoinColumn(name = "staff_confirmation_id", referencedColumnName = "id")
+//	@JsonIgnore
+	ConfirmationByStaff confirmationByStaff;
 
 	@Column(name = "salary_max")
 	Double salaryMax;
@@ -207,4 +216,13 @@ public class JobAdvertisement {
 	public void setJobType(JobType jobType) {
 		this.jobType = jobType;
 	}
+
+	public ConfirmationByStaff getConfirmationByStaff() {
+		return confirmationByStaff;
+	}
+
+	public void setConfirmationByStaff(ConfirmationByStaff confirmationByStaff) {
+		this.confirmationByStaff = confirmationByStaff;
+	}
+
 }

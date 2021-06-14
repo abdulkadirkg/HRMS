@@ -12,8 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "candidates")
@@ -54,22 +56,28 @@ public class Candidate {
 	@Column(name = "id")
 	int id;
 	@Column(name = "name")
+	@NotNull
+	@NotBlank(message = "Lütfen Adınızı Giriniz")
 	String name;
+	@NotNull
+	@NotBlank(message = "Lütfen Soyadınızı Giriniz")
 	@Column(name = "surname")
 	String surname;
-	@Column(name = "identify_number")
+	@Column(name = "identify_number", unique = true)
 	String identifyNumber;
 	@Column(name = "birth_of_year")
 	Date birth;
-	@Column(name = "e_mail")
+	@Column(name = "e_mail", unique = true)
 	String eMail;
+	@NotNull
+	@NotBlank(message = "Lütfen Bir Şifre Giriniz")
 	@Column(name = "password")
 	String password;
 	@Column(name = "profile_picture")
 	String profilePicture;
-	@Column(name = "github_address",columnDefinition="TEXT")
+	@Column(name = "github_address", columnDefinition = "TEXT")
 	String githubAddress;
-	@Column(name = "linkedin_address",columnDefinition="TEXT")
+	@Column(name = "linkedin_address", columnDefinition = "TEXT")
 	String linkedinAddress;
 	@Column(name = "created_at")
 	Date createdAt = new Date();
@@ -96,7 +104,7 @@ public class Candidate {
 	@OneToOne()
 	@JoinColumn(name = "mail_confirmation_id", referencedColumnName = "id")
 	ConfirmationByMail confirmationByMail;
-	
+
 	@OneToOne()
 	@JoinColumn(name = "staff_confirmation_id", referencedColumnName = "id")
 	ConfirmationByStaff confirmationByStaff;

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import hrms.HRMS.business.abstracts.CandidateService;
 import hrms.HRMS.business.abstracts.ConfirmationByMailService;
+import hrms.HRMS.business.abstracts.ConfirmationByStaffService;
 import hrms.HRMS.business.abstracts.JobExperienceService;
 import hrms.HRMS.business.abstracts.LanguageService;
 import hrms.HRMS.business.abstracts.ProgrammingLanguageService;
@@ -24,6 +25,7 @@ import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
 import hrms.HRMS.dataAccess.abstracts.CandidateDao;
 import hrms.HRMS.entites.concretes.Candidate;
 import hrms.HRMS.entites.concretes.ConfirmationByMail;
+import hrms.HRMS.entites.concretes.ConfirmationByStaff;
 import hrms.HRMS.entites.dtos.CandidateRegisterDto;
 import hrms.HRMS.entites.dtos.DetailedCandidateDto;
 
@@ -31,6 +33,7 @@ import hrms.HRMS.entites.dtos.DetailedCandidateDto;
 public class CandidateManager implements CandidateService {
 	@Autowired CandidateDao candidateDao;
 	@Autowired ConfirmationByMailService confirmationByMailService;
+	@Autowired ConfirmationByStaffService confirmationByStaffService;
 	@Autowired ImageUploadService imageUploadHelper;
 	@Autowired JobExperienceService jobExperienceService;
 	@Autowired LanguageService languageService;
@@ -45,8 +48,8 @@ public class CandidateManager implements CandidateService {
 
 	@Override
 	public IResult update(Candidate candidate) {
-		// TODO Auto-generated method stub
-		return null;
+		this.candidateDao.save(candidate);
+		return new SuccessResult("Aday Başarıyla Güncellendi");
 	}
 
 	@Override
@@ -71,28 +74,6 @@ public class CandidateManager implements CandidateService {
 		MernisManager mernisManager = new MernisManager();
 		mernisManager.checkMernis(candidateRegisterDto.getName(), candidateRegisterDto.getSurname(),
 				candidateRegisterDto.getBirthDate());
-		// Required All Fields
-		if (candidateRegisterDto.getBirthDate() == null) {
-			return new ErrorResult("Lütfen Doğum Tarihinizi Giriniz");
-		}
-		if (candidateRegisterDto.geteMail() == null) {
-			return new ErrorResult("Lütfen E-Mail Adresinizi Giriniz");
-		}
-		if (candidateRegisterDto.getIdentifyNumber() == null) {
-			return new ErrorResult("Lütfen TC Kimlik Numaranızı Giriniz");
-		}
-		if (candidateRegisterDto.getName() == null) {
-			return new ErrorResult("Lütfen Adınızı Giriniz");
-		}
-		if (candidateRegisterDto.getSurname() == null) {
-			return new ErrorResult("Lütfen Soyadınızı Giriniz");
-		}
-		if (candidateRegisterDto.getPassword() == null) {
-			return new ErrorResult("Lütfen Şifrenizi Giriniz");
-		}
-		if (candidateRegisterDto.getPasswordRepeat() == null) {
-			return new ErrorResult("Lütfen Şifre Tekrarınızı Giriniz");
-		}
 
 		// Unique E-Mail
 		if (this.candidateDao.getByeMailOrIdentifyNumber(candidateRegisterDto.geteMail(),
@@ -104,12 +85,12 @@ public class CandidateManager implements CandidateService {
 //		if (candidateRegisterDto.getPassword().toString() != candidateRegisterDto.getPasswordRepeat().toString()) {
 //			return new ErrorResult("Lütfen Şifre Tekrarını Doğru Giriniz.");
 //		}
-
+		
 		// THIS BLOCK IS GONNA WRAPPED BY TRANSACTION !!! IMPORTANT !!!
 		ConfirmationByMail confirmationByMail = new ConfirmationByMail();
-		confirmationByMail.setConfirmationCode(UUID.randomUUID().toString());
-		confirmationByMail.setConfirmed(false);
 		confirmationByMailService.add(confirmationByMail);
+		ConfirmationByStaff confirmationByStaff = new ConfirmationByStaff();
+		confirmationByStaffService.add(confirmationByStaff);
 		Candidate registerCandidate = new Candidate();
 		registerCandidate.setName(candidateRegisterDto.getName());
 		registerCandidate.setSurname(candidateRegisterDto.getSurname());
@@ -118,6 +99,7 @@ public class CandidateManager implements CandidateService {
 		registerCandidate.setPassword(candidateRegisterDto.getPassword());
 		registerCandidate.setIdentifyNumber(candidateRegisterDto.getIdentifyNumber());
 		registerCandidate.setConfirmationByMail(confirmationByMail);
+		registerCandidate.setConfirmationByStaff(confirmationByStaff);
 		this.candidateDao.save(registerCandidate);
 		return new SuccessResult(
 				"Kayıt Başarılı. Lütfen Kaydınızın Geçerli Olabilmesi İçin Mail Adresinize Gönderdiğimiz Doğrulama Adımlarını Tamamlayınız.");

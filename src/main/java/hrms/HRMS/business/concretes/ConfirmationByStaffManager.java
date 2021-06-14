@@ -17,19 +17,19 @@ import hrms.HRMS.entites.concretes.ConfirmationByStaff;
 public class ConfirmationByStaffManager implements ConfirmationByStaffService {
 	@Autowired ConfirmationByStaffDao confirmationByStaffDao;
 	@Override
-	public IResult add(ConfirmationByStaff confirmationByStaff) {
+	public IResult add(final ConfirmationByStaff confirmationByStaff) {
 		confirmationByStaffDao.save(confirmationByStaff);
 		return new SuccessResult("Eklendi");
 	}
 
 	@Override
-	public IResult update(ConfirmationByStaff confirmationByStaff) {
+	public IResult update(final ConfirmationByStaff confirmationByStaff) {
 		confirmationByStaffDao.save(confirmationByStaff);
 		return new SuccessResult("Güncellendi");
 	}
 
 	@Override
-	public IResult delete(ConfirmationByStaff confirmationByStaff) {
+	public IResult delete(final ConfirmationByStaff confirmationByStaff) {
 		confirmationByStaffDao.delete(confirmationByStaff);
 		return new SuccessResult("Silindi");
 	}
@@ -40,17 +40,16 @@ public class ConfirmationByStaffManager implements ConfirmationByStaffService {
 	}
 
 	@Override
-	public IDataResult<ConfirmationByStaff> get(int id) {
+	public IDataResult<ConfirmationByStaff> get(final int id) {
 		return new SuccessDataResult<ConfirmationByStaff>(confirmationByStaffDao.getById(id));
 
 	}
 
 	@Override
 	public IResult confirm(ConfirmationByStaff confirmationByStaff) {
-		ConfirmationByStaff confirmationByStaffUpdate = get(confirmationByStaff.getId()).getData();
-		confirmationByStaffUpdate = confirmationByStaff;
-		confirmationByStaffUpdate.setConfirmed(true);
-		confirmationByStaffDao.save(confirmationByStaffUpdate);
+		confirmationByStaff = confirmationByStaffDao.getById(confirmationByStaff.getId());
+		confirmationByStaff.setConfirmed(true);
+		confirmationByStaffDao.save(confirmationByStaff);
 		return new SuccessResult("Onaylama Başarılı");
 	}
 

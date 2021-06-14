@@ -8,24 +8,24 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Builder.Default;
 
 @Entity
 @Table(name = "confirmationByStaff")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "employer","jobAdvertisement" })
 public class ConfirmationByStaff {
-	public ConfirmationByStaff() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public ConfirmationByStaff(int id, boolean isConfirmed, Employer employer) {
+	public ConfirmationByStaff(int id, boolean isConfirmed, Employer employer, JobAdvertisement jobAdvertisement) {
 		super();
 		this.id = id;
 		this.isConfirmed = isConfirmed;
 		this.employer = employer;
+		this.jobAdvertisement = jobAdvertisement;
+	}
+
+	public ConfirmationByStaff() {
+		super();
 	}
 
 	@Id
@@ -34,14 +34,18 @@ public class ConfirmationByStaff {
 	int id;
 	@Column(name = "is_confirmed", columnDefinition = "boolean default false")
 	boolean isConfirmed = false;
+
 	@OneToOne(mappedBy = "confirmationByStaff")
 	Employer employer;
+
+	@OneToOne(mappedBy = "confirmationByStaff")
+	JobAdvertisement jobAdvertisement;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(int id) { 
 		this.id = id;
 	}
 
@@ -59,5 +63,13 @@ public class ConfirmationByStaff {
 
 	public void setEmployer(Employer employer) {
 		this.employer = employer;
+	}
+
+	public JobAdvertisement getJobAdvertisement() {
+		return jobAdvertisement;
+	}
+
+	public void setJobAdvertisement(JobAdvertisement jobAdvertisement) {
+		this.jobAdvertisement = jobAdvertisement;
 	}
 }
