@@ -2,6 +2,8 @@ package hrms.HRMS.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +47,10 @@ public class JobTypesController {
 	@GetMapping("/getAll")
 	public IDataResult<List<JobType>> getAll() {
 		return jobTypeManager.getAll();
+	}
+	@GetMapping("/getAllByPage")
+	public IDataResult<List<JobType>> getAllByPage(@Valid @RequestParam int pageNo, @RequestParam int pageSize) {
+		return jobTypeManager.getAllByPage(pageNo,pageSize);
 	}
 	@GetMapping("/getByJobTypeName")
 	public IDataResult<JobType> getByJobTypeName(@RequestParam String jobType) {

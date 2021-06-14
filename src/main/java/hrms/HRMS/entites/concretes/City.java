@@ -10,8 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.NumberFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "cities")
@@ -34,8 +40,13 @@ public class City {
 	@Column(name = "id")
 	int id;
 	@Column(name = "city_name")
+	@NotNull
+	@NotBlank(message = "Şehir İsmi Boş Olamaz")
 	String cityName;
-	@Column(name = "plate_number")
+	@NotNull
+	@Column(name = "plate_number", unique = true)
+	@Min(value = 1, message = "Plaka 0'dan Büyük Olmalı")
+	@Max(value = 81, message = "Plaka 81'e Eşit Veya Daha Küçük Olmalı")
 	int plateNumber;
 
 	@OneToMany(mappedBy = "city")

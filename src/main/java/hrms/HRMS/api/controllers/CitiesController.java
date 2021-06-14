@@ -2,6 +2,9 @@ package hrms.HRMS.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,13 +36,18 @@ public class CitiesController {
 		return cityService.getAll();
 	}
 
+	@GetMapping("/getAllByPage")
+	public IDataResult<List<City>> getAllByPage(@RequestParam int pageNo, @RequestParam int pageSize) {
+		return cityService.getAllByPage(pageNo, pageSize);
+	}
+
 	@GetMapping("/getByPlateNumber")
 	public IDataResult<City> getByPlateNumber(@RequestParam int plateNumber) {
 		return cityService.getByPlateNumber(plateNumber);
 	}
 
 	@PostMapping("/add")
-	public IResult add(@RequestBody City city) {
+	public IResult add(@Valid @RequestBody City city) {
 		return cityService.add(city);
 	}
 

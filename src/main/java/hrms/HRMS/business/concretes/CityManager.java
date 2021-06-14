@@ -3,6 +3,8 @@ package hrms.HRMS.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import hrms.HRMS.business.abstracts.CityService;
@@ -12,11 +14,13 @@ import hrms.HRMS.core.utilities.results.concretes.SuccessDataResult;
 import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
 import hrms.HRMS.dataAccess.abstracts.CityDao;
 import hrms.HRMS.entites.concretes.City;
+import hrms.HRMS.entites.concretes.JobAdvertisement;
 
 @Service
 public class CityManager implements CityService {
 	@Autowired
 	CityDao cityDao;
+
 	@Override
 	public IResult add(City city) {
 		cityDao.save(city);
@@ -69,5 +73,13 @@ public class CityManager implements CityService {
 	public IDataResult<List<City>> getByCityNameEndsWith(String cityName) {
 		return new SuccessDataResult<List<City>>(cityDao.getByCityNameEndsWith(cityName));
 
+	}
+
+	@Override
+	public IDataResult<List<City>> getAllByPage(int pageNumber, int pageSize) {
+		pageNumber = (pageNumber > 0) ? pageNumber : 1;
+		pageSize = (pageSize > 0) ? pageSize : 1;
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+		return new SuccessDataResult<List<City>>(this.cityDao.findAll(pageable).getContent());
 	}
 }

@@ -13,4 +13,5 @@ public interface JobTypeService {
 	IDataResult<JobType> get(int Id);
 	IDataResult<List<JobType>> getAll();
 	IDataResult<JobType> getByJobTypeName(String jobType);
+	IDataResult<List<JobType>> getAllByPage(int pageNumber, int pageSize);
 }

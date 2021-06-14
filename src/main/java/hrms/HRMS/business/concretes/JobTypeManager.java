@@ -2,7 +2,12 @@ package hrms.HRMS.business.concretes;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import hrms.HRMS.business.abstracts.JobTypeService;
@@ -11,6 +16,7 @@ import hrms.HRMS.core.utilities.results.abstracts.IResult;
 import hrms.HRMS.core.utilities.results.concretes.SuccessDataResult;
 import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
 import hrms.HRMS.dataAccess.abstracts.JobTypeDao;
+import hrms.HRMS.entites.concretes.JobAdvertisement;
 import hrms.HRMS.entites.concretes.JobType;
 
 @Service
@@ -49,6 +55,14 @@ public class JobTypeManager implements JobTypeService {
 	@Override
 	public IDataResult<JobType> getByJobTypeName(String jobType) {
 		return new SuccessDataResult<JobType>(jobTypeDao.getByJobType(jobType));
+	}
+
+	@Override
+	public IDataResult<List<JobType>> getAllByPage(int pageNumber, int pageSize) {
+		pageNumber = (pageNumber > 0) ? pageNumber : 1;
+		pageSize = (pageSize > 0) ? pageSize : 1;
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+		return new SuccessDataResult<List<JobType>>(this.jobTypeDao.findAll(pageable).getContent());
 	}
 
 }

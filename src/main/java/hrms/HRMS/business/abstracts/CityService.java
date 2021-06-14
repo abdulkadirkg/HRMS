@@ -5,6 +5,7 @@ import java.util.List;
 import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
 import hrms.HRMS.entites.concretes.City;
+import hrms.HRMS.entites.concretes.JobAdvertisement;
 
 public interface CityService {
 	IResult add(City city);
@@ -17,4 +18,5 @@ public interface CityService {
 	IDataResult<List<City>> getByCityNameStartsWith(String cityName);
 	IDataResult<List<City>> getByCityNameEndsWith(String cityName);
 	IDataResult<List<City>> getAll();
+	IDataResult<List<City>> getAllByPage(int pageNumber, int pageSize);
 }
