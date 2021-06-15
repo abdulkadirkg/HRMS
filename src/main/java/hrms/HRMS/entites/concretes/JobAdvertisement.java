@@ -16,10 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "job_advertisements")
@@ -69,7 +71,8 @@ public class JobAdvertisement {
 	Position position;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employer_id", referencedColumnName = "id")
+	@JoinColumn(name = "employer_id", referencedColumnName = "id", nullable = false)
+	@NotNull
 	Employer employer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -78,7 +81,6 @@ public class JobAdvertisement {
 	
 	@OneToOne()
 	@JoinColumn(name = "staff_confirmation_id", referencedColumnName = "id")
-//	@JsonIgnore
 	ConfirmationByStaff confirmationByStaff;
 
 	@Column(name = "salary_max")

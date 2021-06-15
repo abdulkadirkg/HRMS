@@ -48,10 +48,13 @@ public class Position {
 	@Column(name = "created_at")
 	@NotNull
 	@NotBlank
+	@JsonIgnore
 	Date createdAt = new Date();
 	@Column(name = "updated_at")
+	@JsonIgnore
 	Date updatedAt = new Date();
 	@Column(name = "deleted_at")
+	@JsonIgnore
 	Date deletedAt = new Date();
 	
 	@OneToMany(mappedBy = "position")

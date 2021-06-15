@@ -3,6 +3,8 @@ package hrms.HRMS.api.controllers;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,21 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import hrms.HRMS.business.abstracts.DtoService;
 import hrms.HRMS.business.abstracts.JobAdvertisementService;
 import hrms.HRMS.core.utilities.results.abstracts.IDataResult;
 import hrms.HRMS.core.utilities.results.abstracts.IResult;
+import hrms.HRMS.core.utilities.results.concretes.SuccessResult;
 import hrms.HRMS.entites.concretes.JobAdvertisement;
+import hrms.HRMS.entites.dtos.JobAdvertisementPostDto;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
 @CrossOrigin
 public class JobAdvertisementsController {
-	@Autowired
-	JobAdvertisementService jobAdvertisementService;
-
+	@Autowired JobAdvertisementService jobAdvertisementService;
+	@Autowired DtoService dtoService;
+	
+//	@PostMapping("/add")
+//	public IResult add(@RequestBody JobAdvertisement jobAdvertisement) {
+//		return jobAdvertisementService.add(jobAdvertisement);
+//	}
+	
 	@PostMapping("/add")
-	public IResult add(@RequestBody JobAdvertisement jobAdvertisement) {
-		return jobAdvertisementService.add(jobAdvertisement);
+	public IResult add(@Valid @RequestBody JobAdvertisementPostDto jobAdvertisementPostDto) {
+		return dtoService.saveJobAdvertisement(jobAdvertisementPostDto);
 	}
 
 	@PostMapping("/update")
