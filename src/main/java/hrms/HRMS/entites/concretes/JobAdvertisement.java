@@ -70,6 +70,7 @@ public class JobAdvertisement {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employer_id", referencedColumnName = "id")
+	@JsonIgnore
 	Employer employer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -78,7 +79,7 @@ public class JobAdvertisement {
 	
 	@OneToOne()
 	@JoinColumn(name = "staff_confirmation_id", referencedColumnName = "id")
-//	@JsonIgnore
+	@JsonIgnore
 	ConfirmationByStaff confirmationByStaff;
 
 	@Column(name = "salary_max")
