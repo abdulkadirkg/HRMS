@@ -2,7 +2,8 @@ package hrms.HRMS.business.concretes;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,15 +32,25 @@ import hrms.HRMS.entites.dtos.DetailedCandidateDto;
 
 @Service
 public class CandidateManager implements CandidateService {
-	@Autowired CandidateDao candidateDao;
-	@Autowired ConfirmationByMailService confirmationByMailService;
-	@Autowired ConfirmationByStaffService confirmationByStaffService;
-	@Autowired ImageUploadService imageUploadHelper;
-	@Autowired JobExperienceService jobExperienceService;
-	@Autowired LanguageService languageService;
-	@Autowired ResumeService resumeService;
-	@Autowired SchoolService schoolService;
-	@Autowired ProgrammingLanguageService programmingLanguageService;
+	@Autowired
+	CandidateDao candidateDao;
+	@Autowired
+	ConfirmationByMailService confirmationByMailService;
+	@Autowired
+	ConfirmationByStaffService confirmationByStaffService;
+	@Autowired
+	ImageUploadService imageUploadHelper;
+	@Autowired
+	JobExperienceService jobExperienceService;
+	@Autowired
+	LanguageService languageService;
+	@Autowired
+	ResumeService resumeService;
+	@Autowired
+	SchoolService schoolService;
+	@Autowired
+	ProgrammingLanguageService programmingLanguageService;
+
 	@Override
 	public IResult add(Candidate candidate) {
 		this.candidateDao.save(candidate);
@@ -69,6 +80,7 @@ public class CandidateManager implements CandidateService {
 	}
 
 	@Override
+	@Transactional
 	public IResult register(CandidateRegisterDto candidateRegisterDto) {
 		// "MERNIS" Validation
 		MernisManager mernisManager = new MernisManager();
@@ -85,7 +97,7 @@ public class CandidateManager implements CandidateService {
 //		if (candidateRegisterDto.getPassword().toString() != candidateRegisterDto.getPasswordRepeat().toString()) {
 //			return new ErrorResult("Lütfen Şifre Tekrarını Doğru Giriniz.");
 //		}
-		
+
 		// THIS BLOCK IS GONNA WRAPPED BY TRANSACTION !!! IMPORTANT !!!
 		ConfirmationByMail confirmationByMail = new ConfirmationByMail();
 		confirmationByMailService.add(confirmationByMail);

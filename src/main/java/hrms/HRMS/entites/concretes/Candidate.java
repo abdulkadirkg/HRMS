@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
@@ -72,6 +73,7 @@ public class Candidate {
 	@NotNull
 	@NotBlank(message = "Lütfen Bir Şifre Giriniz")
 	@Column(name = "password")
+	@JsonIgnore
 	String password;
 	@Column(name = "profile_picture")
 	String profilePicture;

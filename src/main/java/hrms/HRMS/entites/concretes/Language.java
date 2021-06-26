@@ -32,7 +32,6 @@ public class Language {
 	
 	@ManyToOne
 	@JoinColumn(name = "candidate_id")
-	@JsonIgnore
 	Candidate candidate;
 	
 	@Column(name = "level")
