@@ -62,7 +62,7 @@ public class School {
 	Date endDate;
 
 	@Column(name = "grade")
-	@NumberFormat(style = Style.DEFAULT)
+//	@NumberFormat(style = Style.DEFAULT)
 	Double grade;
 
 	@ManyToOne(fetch = FetchType.LAZY)
