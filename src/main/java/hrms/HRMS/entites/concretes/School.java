@@ -13,11 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name="schools")
+@Table(name = "schools")
 public class School {
 	public School() {
 		super();
@@ -39,25 +42,29 @@ public class School {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	int id;
-	
+
 	@NotNull
 	@NotBlank
 	@Column(name = "school_name")
 	String schoolName;
-	
+
 	@NotNull
 	@NotBlank
 	@Column(name = "department")
 	String departmentName;
-	
+
 	@NotNull
 	@NotBlank
 	@Column(name = "start_date")
 	Date startDate;
-	
+
 	@Column(name = "end_date")
 	Date endDate;
-	
+
+	@Column(name = "grade")
+	@NumberFormat(style = Style.DEFAULT)
+	Double grade;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "candidate_id")
 //	@JsonIgnore
