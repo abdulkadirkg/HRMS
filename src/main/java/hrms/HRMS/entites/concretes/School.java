@@ -22,21 +22,23 @@ import com.sun.istack.NotNull;
 @Entity
 @Table(name = "schools")
 public class School {
-	public School() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public School(int id, @NotBlank String schoolName, @NotBlank String departmentName, @NotBlank Date startDate,
-			Date endDate, Candidate candidate) {
+			Date endDate, Double grade, Candidate candidate) {
 		super();
 		this.id = id;
 		this.schoolName = schoolName;
 		this.departmentName = departmentName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.grade = grade;
 		this.candidate = candidate;
 	}
+
+	public School() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -116,5 +118,13 @@ public class School {
 
 	public void setCandidate(Candidate candidate) {
 		this.candidate = candidate;
+	}
+
+	public Double getGrade() {
+		return grade;
+	}
+
+	public void setGrade(Double grade) {
+		this.grade = grade;
 	}
 }
