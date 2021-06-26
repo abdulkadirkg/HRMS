@@ -60,7 +60,7 @@ public class School {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "candidate_id")
-	@JsonIgnore
+//	@JsonIgnore
 	Candidate candidate;
 
 	public int getId() {

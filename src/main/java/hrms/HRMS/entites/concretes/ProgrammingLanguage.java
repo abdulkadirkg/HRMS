@@ -31,7 +31,7 @@ public class ProgrammingLanguage {
 	
 	@ManyToOne
 	@JoinColumn(name = "candidate_id")
-	@JsonIgnore
+//	@JsonIgnore
 	Candidate candidate;
 	
 	public int getId() {
