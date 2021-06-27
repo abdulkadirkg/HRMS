@@ -43,8 +43,8 @@ public class School {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	int id;
-
+	int id; 
+ 
 	@NotNull
 	@NotBlank
 	@Column(name = "school_name")

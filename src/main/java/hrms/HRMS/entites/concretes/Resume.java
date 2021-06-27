@@ -2,6 +2,7 @@ package hrms.HRMS.entites.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Resume {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "id",unique = true)
 	int id;
 	@NotBlank
 	@NotNull
@@ -41,8 +42,8 @@ public class Resume {
 	@Column(name = "is_active")
 	Boolean isActive;
 	
-	@ManyToOne
 	@JoinColumn(name = "candidate_id")
+	@ManyToOne(fetch = FetchType.LAZY)
 //	@JsonIgnore
 	Candidate candidate;
 
