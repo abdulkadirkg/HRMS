@@ -27,7 +27,8 @@ public class ResumeManager implements ResumeService {
 	@Override
 	public IResult update(Resume resume) {
 		Resume resumeToUpdate = resumeDao.getById(resume.getId());
-		resumeToUpdate = resume;
+		resumeToUpdate.setResumeText(resume.getResumeText());
+		resumeToUpdate.setIsActive(resume.getIsActive());
 		resumeDao.save(resumeToUpdate);
 		return new SuccessResult("Özgeçmiş Başarıyla Güncellendi");
 	}

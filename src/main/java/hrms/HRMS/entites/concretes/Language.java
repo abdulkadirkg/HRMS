@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
@@ -35,6 +36,7 @@ public class Language {
 	Candidate candidate;
 	
 	@Column(name = "level")
+	@Size(min = 1,max = 10)
 	int level;
 
 	public int getId() {
